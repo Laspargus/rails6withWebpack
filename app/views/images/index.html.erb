@@ -16,13 +16,17 @@
   <div class="row">
     <% if @images != nil && @images != "" %>
     <% @images.each do |image| %>
-      <div class="col-md-3 card" >
-
-      <%= image_tag "data:image/#{image.extension};base64,#{image.stream}", class:"flexible"%>
-        <div class="card-body">
-          <p class="card-text"><%=image.description%></p>
+      
+      <% if image.user != current_user && image.private == true%>
+      <%else%>
+        <div class="col-md-3 card">
+        <%= image_tag "data:image/#{image.extension};base64,#{image.stream}", class:"flexible"%>
+          <div class="card-body">
+            <p class="card-text"><%=image.description%></p>
+          </div>
         </div>
-      </div>
+      <%end%>
+
     <% end %>
     <%end%>
   </div>

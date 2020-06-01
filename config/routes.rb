@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  resources :pictures, only: [:create]
+  root 'images#index'
+  resources :images, only: [:create, :show]
   get 'profile' => 'profile#show'
   devise_for :users
   resources :users, only: [:show]
