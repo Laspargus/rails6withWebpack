@@ -2,8 +2,19 @@
 <p>Find me in app/views/profile/show.html.erb</p>
 
 
+<li><%= @user.username %></li>
+<li><%= @user.last_name %></li>
+<li><%= @user.first_name %></li>
+<li><%= @user.email %></li>
 
-<li><%= current_user.username %></li>
-<li><%= current_user.last_name %></li>
-<li><%= current_user.first_name %></li>
-<li><%= current_user.email %></li>
+
+<h3>Mes images</h3>
+<%if @user.pictures.attached?%>
+  <% @user.pictures.each do |picture| %>
+    <%= image_tag(picture) %>
+  <% end %>
+<%else%>
+  <p>=== Il n'y a pas encore d'image lié à cet utilisateur ===</p>
+<%end%>
+
+
