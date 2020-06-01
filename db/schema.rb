@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_123608) do
+ActiveRecord::Schema.define(version: 2020_06_01_192520) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,27 @@ ActiveRecord::Schema.define(version: 2020_06_01_123608) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "image_id"
+    t.index ["image_id"], name: "index_comments_on_image_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.binary "stream"
+    t.string "description"
+    t.string "extension"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.boolean "private", default: false
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -49,4 +70,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_123608) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "images"
+  add_foreign_key "comments", "users"
+  add_foreign_key "images", "users"
 end

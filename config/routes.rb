@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+  get 'comments/show'
+  get 'comments/create'
+  get 'comments/destroy'
+  get 'comments/new'
   root 'images#index'
-  resources :images, only: [:create, :show]
+  resources :images, only: [:create, :show] do
+    resources :comments
+  end
   get 'profile' => 'profile#show'
   devise_for :users
   resources :users, only: [:show]

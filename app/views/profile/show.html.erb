@@ -8,13 +8,6 @@
 <li><%= @user.email %></li>
 
 
-<h3>Mes images</h3>
-<%if @user.pictures.attached?%>
-  <% @user.pictures.each do |picture| %>
-    <%= image_tag(picture) %>
-  <% end %>
-<%else%>
-  <p>=== Il n'y a pas encore d'image lié à cet utilisateur ===</p>
-<%end%>
+
 
 

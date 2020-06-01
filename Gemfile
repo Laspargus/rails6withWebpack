@@ -42,6 +42,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   #gem 'rails_db', '~> 1.6'
+  gem 'table_print'
+#Pour afficher les tables dans la console
 end
 
 group :test do
