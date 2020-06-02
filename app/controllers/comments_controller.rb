@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_image, only: [:create, :destroy, :edit]
+  before_action :set_image, only: [:create, :destroy, :edit, :update]
  
   def index
   end
@@ -8,6 +8,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id]) 
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(description: params[:description])
+    redirect_to image_path(@image)
   end
 
   def create

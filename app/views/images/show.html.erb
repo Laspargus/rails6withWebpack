@@ -10,7 +10,7 @@
   </div>
   <div>
   <% @comments.each do |comment|%>
-  <p><%= comment.description%>
+  <p><%= comment.description%> | <%= comment.user.username%>
   <%if comment.user == current_user %>
     <%=link_to 'Delete', image_comment_path(@image, comment),data: {confirm: "Are you sure  ?"},  class:"btn btn-danger", method: :delete%>
      <%=link_to 'Edit', edit_image_comment_path(@image, comment), class:"btn btn-warning", method: :get%>
